@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>AdventureWorks_2</DataSourceReference>
+      <CommandText>SELECT                                          Sales.SalesOrderHeader.SalesOrderID,
+			Sales.SalesOrderHeader.OrderDate,
+			Year(Sales.SalesOrderHeader.OrderDate) as OrderYear,
+			Sales.SalesOrderHeader.DueDate, 
+			Sales.SalesOrderHeader.ShipDate, 
+Case
+			when Sales.SalesOrderHeader.Status = 1 Then 'In Process'
+			when Sales.SalesOrderHeader.Status = 2 Then 'Approved'
+			when Sales.SalesOrderHeader.Status = 3 Then 'Back Ordered'
+			when Sales.SalesOrderHeader.Status = 4 Then 'Rejected'
+			when Sales.SalesOrderHeader.Status = 5 Then 'Shipped'
+			when Sales.SalesOrderHeader.Status = 6 Then 'Cancelled'
+			Else 'Invalid'
+			End As orderStatus,
+			Sales.SalesOrderHeader.SalesOrderNumber, 
+			Sales.SalesOrderHeader.SalesPersonID, 
+			Person.Person.FirstName, 
+			Person.Person.LastName, 
+			Sales.SalesOrderHeader.SubTotal, 
+			Sales.SalesOrderHeader.TaxAmt, 
+			Sales.SalesOrderHeader.Freight, 
+                                                        Sales.SalesOrderHeader.TotalDue
+FROM		                   Sales.SalesOrderHeader 
+INNER JOIN
+			Person.Person ON Sales.SalesOrderHeader.SalesPersonID = Person.Person.BusinessEntityID</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="SalesOrderID">
+        <DataField>SalesOrderID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="OrderDate">
+        <DataField>OrderDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="OrderYear">
+        <DataField>OrderYear</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="DueDate">
+        <DataField>DueDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="ShipDate">
+        <DataField>ShipDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="orderStatus">
+        <DataField>orderStatus</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SalesOrderNumber">
+        <DataField>SalesOrderNumber</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SalesPersonID">
+        <DataField>SalesPersonID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="FirstName">
+        <DataField>FirstName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="LastName">
+        <DataField>LastName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SubTotal">
+        <DataField>SubTotal</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="TaxAmt">
+        <DataField>TaxAmt</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="Freight">
+        <DataField>Freight</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="TotalDue">
+        <DataField>TotalDue</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

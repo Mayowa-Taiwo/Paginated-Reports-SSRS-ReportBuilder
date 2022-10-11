@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>AdventureWorks_2</DataSourceReference>
+      <CommandText>SELECT	Sales.SalesPerson.TerritoryID, 
+	IsNull(Sales.SalesTerritory.Name,'*No Territory') AS TerritoryName, 
+	Sales.SalesPerson.BusinessEntityID, 
+	Person.Person.FirstName, 
+	Person.Person.LastName, 
+	Person.Person.FirstName + ' ' + Person.Person.LastName as SalesPersonName,
+	Sales.SalesPerson.SalesQuota, 
+                   Sales.SalesPerson.Bonus, 
+	Sales.SalesPerson.CommissionPct, 
+	Sales.SalesPerson.SalesYTD, 
+	Sales.SalesPerson.SalesLastYear
+
+FROM        Sales.SalesPerson 
+INNER JOIN
+	Person.Person ON Sales.SalesPerson.BusinessEntityID = Person.Person.BusinessEntityID 
+LEFT OUTER JOIN
+                Sales.SalesTerritory ON Sales.SalesPerson.TerritoryID = Sales.SalesTerritory.TerritoryID
+</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="TerritoryID">
+        <DataField>TerritoryID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="TerritoryName">
+        <DataField>TerritoryName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="BusinessEntityID">
+        <DataField>BusinessEntityID</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="FirstName">
+        <DataField>FirstName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="LastName">
+        <DataField>LastName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SalesPersonName">
+        <DataField>SalesPersonName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="SalesQuota">
+        <DataField>SalesQuota</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="Bonus">
+        <DataField>Bonus</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="CommissionPct">
+        <DataField>CommissionPct</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="SalesYTD">
+        <DataField>SalesYTD</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+      <Field Name="SalesLastYear">
+        <DataField>SalesLastYear</DataField>
+        <rd:TypeName>System.Decimal</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>
