@@ -1,2 +1,2 @@
-# Paginated Report Use Cases
-Illustrating the Versatility of Paginated Reports to help small scale businesses and start up jump start their business Intelligence development process.
+# Paginated Reports from OLTP databases
+Personal project to develope sample reports from Operational data source, in this instance, AdventureWorks.
